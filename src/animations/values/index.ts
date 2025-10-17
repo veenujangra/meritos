@@ -79,6 +79,7 @@ export default class Values {
       })
     })
   }
+
   setSticky() {
     const block = document.querySelector('.home_value-block') as HTMLElement | null
     let blockHeight = 0
