@@ -26,7 +26,7 @@ export default class Slash extends Animation {
     // Set initial properties for the fade-up animation
     gsap.set(this.element, {
       opacity: 0,
-      y: '70%',
+      y: '30%',
     })
   }
 
@@ -42,8 +42,8 @@ export default class Slash extends Animation {
       this.element,
       {
         opacity: 0,
-        x: '-70%',
-        y: '70%',
+        x: '-30%',
+        y: '30%',
       },
       {
         duration: this.settings.duration,

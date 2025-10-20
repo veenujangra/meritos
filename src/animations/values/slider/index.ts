@@ -9,8 +9,8 @@ export default class Slider {
   constructor(option = { element: null as HTMLElement | null }) {
     this.element = option.element
     // console.log(this.element)
-    this.mask = this.element?.querySelector('.about_perk-slider') || null
-    this.slides = this.element?.querySelectorAll('.about_perk-card') || null
+    this.mask = this.element?.querySelector('.home_value-wrapper') || null
+    this.slides = this.element?.querySelectorAll('[data-value-wrapper]') || null
     this.tl = null
     this.create()
 
@@ -36,7 +36,7 @@ export default class Slider {
   animation() {
     if (!this.slides) return
     this.tl?.to(this.slides, {
-      xPercent: -100 * (this.slides.length - 1),
+      xPercent: -100 * (this.slides.length - 1) - 50,
       ease: 'none',
       duration: 1,
     })
@@ -52,12 +52,12 @@ export default class Slider {
             //   slide.classList.remove('in-view')
             // })
             entry.target.classList.add('in-view')
-            gsap.to(entry.target, { y: '-20%', duration: 0.5 })
-            console.log(`slider ${index} in view`, entry.target)
+            gsap.to(entry.target, { autoAlpha: 1, duration: 0.5 })
+            // console.log(`slider ${index} in view`, entry.target)
           } else {
             entry.target.classList.remove('in-view')
-            gsap.to(entry.target, { y: '0%', duration: 0.5 })
-            console.log(`slider ${index} out of view`, entry.target)
+            gsap.to(entry.target, { autoAlpha: 0.5, duration: 0.5 })
+            // console.log(`slider ${index} out of view`, entry.target)
           }
         })
       },

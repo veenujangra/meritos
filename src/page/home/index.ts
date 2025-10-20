@@ -15,7 +15,6 @@ export default class Home extends Page {
     // Initialize the accordion
     super.show()
 
-    if (window.innerWidth < 768) return
     new Values({ element: document.querySelector('.home_value-trigger_wrapper') })
   }
 
