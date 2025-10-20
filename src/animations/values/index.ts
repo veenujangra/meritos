@@ -55,8 +55,10 @@ export default class Values {
     gsap.registerPlugin(ScrollTrigger)
 
     // gsap.set(this.elements, { autoAlpha: 0 })
-    this.elements.forEach((el, index) => this.animateOut(el, index))
-    this.animateIn(this.elements[0], 0)
+    this.elements.forEach((el, index) => {
+      console.log(el), this.animateOut(index)
+    })
+    this.animateIn(0)
 
     this.triggers.forEach((trigger, index) => {
       ScrollTrigger.create({
@@ -68,29 +70,29 @@ export default class Values {
           // console.log('enter', index)
           // First element is already visible
           if (index === 0) return
-          this.animateIn.bind(this)(this.elements[index], index)
+          this.animateIn.bind(this)(index)
         },
         onLeave: () => {
           // console.log('leave', index)
           if (index === this.elements.length - 1) return
-          this.animateOut.bind(this)(this.elements[index], index)
+          this.animateOut.bind(this)(index)
         },
         onEnterBack: () => {
           // console.log('enter back', index)
           if (index === this.elements.length - 1) return
-          this.animateIn.bind(this)(this.elements[index], index)
+          this.animateIn.bind(this)(index)
         },
         onLeaveBack: () => {
           // console.log('leave back', index)
           if (index === 0) return
-          this.animateOut.bind(this)(this.elements[index], index)
+          this.animateOut.bind(this)(index)
         },
-        markers: true,
+        markers: false,
       })
     })
   }
 
-  animateIn(element: HTMLElement, index?: number) {
+  animateIn(index: number) {
     this.tl = gsap.timeline()
     this.tl
       .to(this.elementsChildren[index!].title, { autoAlpha: 1, duration: 0.5 })
@@ -102,7 +104,7 @@ export default class Values {
       .to(this.elementsChildren[index!].graphHighlight, { scaleY: 1, duration: 0.5 }, '-=0.5')
   }
 
-  animateOut(element: HTMLElement, index?: number) {
+  animateOut(index: number) {
     this.tl = gsap.timeline()
     this.tl
       .to(this.elementsChildren[index!].title, { autoAlpha: 0, duration: 0.5 })

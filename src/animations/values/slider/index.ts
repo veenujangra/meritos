@@ -46,7 +46,7 @@ export default class Slider {
     if (!this.mask) return
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry, index) => {
+        entries.forEach((entry) => {
           if (entry.isIntersecting) {
             // this.slides?.forEach((slide) => {
             //   slide.classList.remove('in-view')
