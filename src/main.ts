@@ -6,6 +6,7 @@ import './style.css'
 class Meritos {
   home: Home | undefined
   about: About | undefined
+  page: Page | undefined
   constructor() {
     this.createPage()
   }
@@ -20,7 +21,9 @@ class Meritos {
         element: document.querySelector('[data-page="about"]') as HTMLElement,
       })
     } else {
-      new Page({ element: document.querySelector('[data-page]') as HTMLElement })
+      this.page = new Page({ element: document.querySelector('[data-page]') as HTMLElement })
+      this.page.create()
+      this.page.show()
     }
   }
 
