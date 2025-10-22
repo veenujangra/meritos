@@ -16,3 +16,29 @@
 /* .home_value-wrapper {
   height: 80rem;
 } */
+
+.home_value-nav_item * {
+  transform: scale(0);
+  transition: color 0.4s ease, transform 0.4s ease;
+}
+
+.home_value-nav_item.active *,
+.home_value-nav_item:hover * {
+  transform: scale(1);
+  color: rgba(255, 255, 255, 0.8);
+}
+.home_value-nav_item.active:hover *,
+.home_value-nav_item:hover * {
+  color: black;
+}
+.home_value-nav_item * {
+  color: inherit;
+}
+.home_value-nav_item {
+  border-width: 10px;
+  transition: border-width 0.4s ease, background-color 0.4s ease, color 0.4s ease;
+}
+.home_value-nav_item.active,
+.home_value-nav_item:hover {
+  border-width: 3px;
+}

@@ -23,7 +23,7 @@ export default class Slider {
     this.tl = gsap.timeline({
       scrollTrigger: {
         trigger: this.element,
-        start: 'top 10%',
+        start: 'bottom bottom',
         end: 'bottom center',
         scrub: 1,
         // markers: true,
@@ -52,11 +52,11 @@ export default class Slider {
             //   slide.classList.remove('in-view')
             // })
             entry.target.classList.add('in-view')
-            gsap.to(entry.target, { autoAlpha: 1, duration: 0.5 })
+            gsap.to(entry.target, { autoAlpha: 1, duration: 0.3 })
             // console.log(`slider ${index} in view`, entry.target)
           } else {
             entry.target.classList.remove('in-view')
-            gsap.to(entry.target, { autoAlpha: 0.5, duration: 0.5 })
+            gsap.to(entry.target, { autoAlpha: 0.5, duration: 0.3 })
             // console.log(`slider ${index} out of view`, entry.target)
           }
         })

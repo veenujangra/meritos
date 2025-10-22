@@ -4,10 +4,14 @@ import Values from '../../animations/values'
 // import Gallery from '../../animations/gallery'
 
 export default class Home extends Page {
+  homeLayer: HTMLElement | undefined
   constructor(options: { element: HTMLElement }) {
     super(options)
     this.lenis = super.getLenis()
     this.create()
+
+    this.addEventListeners()
+    this.onResize()
   }
 
   create() {
@@ -15,14 +19,26 @@ export default class Home extends Page {
     // Initialize the accordion
     super.show()
 
-    new Values({ element: document.querySelector('.home_value-trigger_wrapper') })
+    new Values({ element: document.querySelector('.home_value-trigger_wrapper'), lenis: this.lenis })
+
+    this.homeLayer = document.querySelector('.home_hero-layer_1') as HTMLElement
   }
 
   onResize() {
     super.onResize()
+
+    const homeLayerHeight = this.homeLayer?.offsetHeight || 0
+    if (this.homeLayer) {
+      console.log('resize home page', homeLayerHeight)
+      this.homeLayer.style.top = `-${homeLayerHeight - window.innerHeight}px`
+    }
   }
 
   destroy(): void {
     super.destroy()
+  }
+
+  addEventListeners() {
+    window.addEventListener('resize', this.onResize.bind(this))
   }
 }
