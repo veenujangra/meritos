@@ -17,7 +17,7 @@
   height: 80rem;
 } */
 
-.home_value-nav_item * {
+/* .home_value-nav_item * {
   transform: scale(0);
   transition: color 0.4s ease, transform 0.4s ease;
 }
@@ -41,4 +41,4 @@
 .home_value-nav_item.active,
 .home_value-nav_item:hover {
   border-width: 3px;
-}
+} */
