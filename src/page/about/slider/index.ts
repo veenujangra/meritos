@@ -20,11 +20,15 @@ export default class Slider {
   create() {
     gsap.registerPlugin(ScrollTrigger)
     // console.log(this.element)
+    let start = null
+    if (window.innerWidth <= 768) {
+      start = 'bottom bottom'
+    }
     this.tl = gsap.timeline({
       scrollTrigger: {
         trigger: this.element,
-        start: 'top 10%',
-        end: 'bottom center',
+        start: start || 'top 10%',
+        end: 'bottom top',
         scrub: 1,
         // markers: true,
         pin: true,
@@ -36,7 +40,7 @@ export default class Slider {
   animation() {
     if (!this.slides) return
     this.tl?.to(this.slides, {
-      xPercent: -100 * (this.slides.length - 1),
+      xPercent: -105 * (this.slides.length - 1),
       ease: 'none',
       duration: 1,
     })
@@ -46,24 +50,25 @@ export default class Slider {
     if (!this.mask) return
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry, index) => {
+        entries.forEach((entry) => {
           if (entry.isIntersecting) {
             // this.slides?.forEach((slide) => {
             //   slide.classList.remove('in-view')
             // })
             entry.target.classList.add('in-view')
             gsap.to(entry.target, { y: '-20%', duration: 0.5 })
-            console.log(`slider ${index} in view`, entry.target)
+            // console.log(`slider ${index} in view`, entry.target)
           } else {
             entry.target.classList.remove('in-view')
             gsap.to(entry.target, { y: '0%', duration: 0.5 })
-            console.log(`slider ${index} out of view`, entry.target)
+            // console.log(`slider ${index} out of view`, entry.target)
           }
         })
       },
       {
         root: this.mask,
-        threshold: 0.5,
+        threshold: 0,
+        rootMargin: '-50%', // top right bottom left
       }
     )
     this.slides?.forEach((slide) => {

@@ -17,9 +17,7 @@ export default class About extends Page {
     super.show()
 
     // Slider
-    if (window.innerWidth > 768) {
-      new Slider({ element: document.querySelector('.about_perk-wrapper') as HTMLElement })
-    }
+    new Slider({ element: document.querySelector('.about_perk-wrapper') as HTMLElement })
   }
 
   onResize() {
