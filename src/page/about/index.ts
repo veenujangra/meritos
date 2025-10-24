@@ -13,11 +13,13 @@ export default class About extends Page {
 
   create() {
     super.create()
-    // Initialize the accordion
+    // Initialize the Accordion
     super.show()
 
     // Slider
-    new Slider({ element: document.querySelector('.about_perk-wrapper') as HTMLElement })
+    if (window.innerWidth > 768) {
+      new Slider({ element: document.querySelector('.about_perk-wrapper') as HTMLElement })
+    }
   }
 
   onResize() {
