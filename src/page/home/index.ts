@@ -19,7 +19,8 @@ export default class Home extends Page {
     // Initialize the accordion
     super.show()
 
-    new Values({ element: document.querySelector('.home_value-trigger_wrapper'), lenis: this.lenis })
+    // new Values({ element: document.querySelector('.home_value-trigger_wrapper'), lenis: this.lenis })
+    new Values({ element: document.querySelectorAll('.home_value-content_block'), lenis: this.lenis })
 
     this.homeLayer = document.querySelector('.home_hero-layer_1') as HTMLElement
   }

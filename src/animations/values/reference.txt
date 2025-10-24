@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sticky Cards with Fade & Scale</title>
+  <style>
+    /* Basic Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f0f0;
+    }
+    
+    /* Empty sections with grey background */
+    .empty-section {
+      height: 100vh;
+      background: grey;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+    }
+    
+    /* Container for stacking card wrappers vertically */
+    .cards-container {
+      /* Wrappers stack naturally */
+    }
+    
+    /* Each card wrapper has 15vh top padding */
+    .card-wrapper {
+      height: 70vh;
+      padding-top: 15vh;
+      position: relative;
+      width: 50vw;
+      margin: auto;
+    }
+    
+    /* Last card wrapper gets extra bottom padding and increased height */
+    .card-wrapper:last-of-type {
+      height: 85vh; /* 70vh + 15vh extra to account for bottom padding */
+      padding-bottom: 15vh;
+    }
+    
+    /* The card fills the wrapper's width and remaining height in normal wrappers */
+    .card {
+      width: 100%;
+      height: calc(70vh - 15vh); /* 55vh */
+      margin: 0 auto;
+      background: #fff;
+      border-radius: 10px;
+      padding: 50px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+    
+    /* In the last wrapper, adjust card height to account for extra bottom padding */
+    .card-wrapper:last-of-type .card {
+      height: calc(85vh - 30vh); /* 85 - (15+15) = 55vh */
+    }
+  </style>
+  <!-- GSAP & ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.1/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.1/ScrollTrigger.min.js"></script>
+</head>
+<body>
+  
+  <!-- Empty section before cards container -->
+  <section class="empty-section"><h1>Scroll down to experience</h1></section>
+  
+  <div class="cards-container">
+    <div class="card-wrapper">
+      <div class="card">
+        <h2>Card 1</h2>
+        <p>Experience the ultimate in luxury living.</p>
+      </div>
+    </div>
+    <div class="card-wrapper">
+      <div class="card">
+        <h2>Card 2</h2>
+        <p>Modern design meets timeless elegance.</p>
+      </div>
+    </div>
+    <div class="card-wrapper">
+      <div class="card">
+        <h2>Card 3</h2>
+        <p>Indulge in a home that redefines luxury.</p>
+      </div>
+    </div>
+    <div class="card-wrapper">
+      <div class="card">
+        <h2>Card 4</h2>
+        <p>Experience the ultimate in luxury living.</p>
+      </div>
+    </div>
+    <div class="card-wrapper">
+      <div class="card">
+        <h2>Card 5</h2>
+        <p>Modern design meets timeless elegance.</p>
+      </div>
+    </div>
+    <div class="card-wrapper">
+      <div class="card">
+        <h2>Card 6</h2>
+        <p>Indulge in a home that redefines luxury.</p>
+      </div>
+    </div>
+    <div class="card-wrapper">
+      <div class="card">
+        <h2>Card 7</h2>
+        <p>Experience the ultimate in luxury living.</p>
+      </div>
+    </div>
+    <div class="card-wrapper">
+      <div class="card">
+        <h2>Card 8</h2>
+        <p>Modern design meets timeless elegance.</p>
+      </div>
+    </div>
+    <div class="card-wrapper">
+      <div class="card">
+        <h2>Card 9</h2>
+        <p>Indulge in a home that redefines luxury.</p>
+      </div>
+    </div>
+    <div class="card-wrapper">
+      <div class="card">
+        <h2>Card 10</h2>
+        <p>Experience the ultimate in luxury living.</p>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Empty section after cards container -->
+  <section class="empty-section"><h1>Scroll up to experience</h1></section>
+  
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+    const wrappers = document.querySelectorAll('.card-wrapper');
+    
+    wrappers.forEach((wrapper, index) => {
+      const card = wrapper.querySelector('.card');
+      
+      // For the last card, allow normal scroll without pinning.
+      if (index === wrappers.length - 1) {
+        gsap.set(card, { opacity: 1, scale: 1 });
+      } else {
+        gsap.timeline({
+          scrollTrigger: {
+            trigger: wrapper,
+            start: "top top",
+            end: "bottom top",
+            scrub: true,
+            pin: true,
+            pinSpacing: false,
+          }
+        })
+        .set(card, { opacity: 1, scale: 1 })
+        .to(card, { opacity: 0, scale: 0.6, ease: "none" }, 0.01);
+      }
+    });
+  </script>
+</body>
+</html>
