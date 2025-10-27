@@ -1,6 +1,6 @@
 import Page from '..'
 import Values from '../../animations/values'
-// import Accordion from '@pixeto/accordion'
+import Accordion from '@pixeto/accordion'
 // import Gallery from '../../animations/gallery'
 
 export default class Home extends Page {
@@ -23,6 +23,8 @@ export default class Home extends Page {
     new Values({ element: document.querySelectorAll('.home_value-content_block'), lenis: this.lenis })
 
     this.homeLayer = document.querySelector('.home_hero-layer_1') as HTMLElement
+
+    new Accordion()
   }
 
   onResize() {
