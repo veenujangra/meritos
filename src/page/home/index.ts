@@ -32,7 +32,7 @@ export default class Home extends Page {
 
     const homeLayerHeight = this.homeLayer?.offsetHeight || 0
     if (this.homeLayer) {
-      console.log('resize home page', homeLayerHeight)
+      // console.log('resize home page', homeLayerHeight)
       this.homeLayer.style.top = `-${homeLayerHeight - window.innerHeight}px`
     }
   }
