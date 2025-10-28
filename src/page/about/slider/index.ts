@@ -21,13 +21,13 @@ export default class Slider {
     gsap.registerPlugin(ScrollTrigger)
     // console.log(this.element)
     let start = null
-    if (window.innerWidth <= 768) {
+    if (window.innerHeight <= 768) {
       start = 'bottom bottom'
     }
     this.tl = gsap.timeline({
       scrollTrigger: {
         trigger: this.element,
-        start: start || 'top 10%',
+        start: start || 'center center',
         end: 'bottom top',
         scrub: 1,
         // markers: true,
