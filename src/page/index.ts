@@ -148,9 +148,9 @@ export default class Page {
     }
 
     // is scrolled
-    if (this.lenis.scroll > 100) {
+    if (this.lenis.scroll > 1) {
       document.documentElement.classList.add('scrolled')
-    } else if (this.lenis.scroll < 100) {
+    } else if (this.lenis.scroll < 1) {
       document.documentElement.classList.remove('scrolled')
     }
   }

@@ -27,7 +27,7 @@ export default class Values {
       progressItems.forEach((item, index) => {
         item.addEventListener('click', () => {
           if (!this.wrappers) return
-          this.lenis?.scrollTo(this.wrappers[index], { offset: -300 })
+          this.lenis?.scrollTo(this.wrappers[index], { offset: 0 })
         })
       })
 
