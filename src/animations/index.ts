@@ -13,7 +13,7 @@ export default class Animation {
 
   createObserver() {
     this.observerOptions = {
-      rootMargin: this.element.getAttribute('data-root-margin') || '0px 0px -20% 0px',
+      rootMargin: this.element.getAttribute('data-root-margin') || '0px 0px -10% 0px',
       threshold: parseFloat(this.element.getAttribute('data-threshold') || '0'),
     }
 
